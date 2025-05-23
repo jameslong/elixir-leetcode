@@ -22,4 +22,5 @@ Elixir specific:
 
 Resources:
 
+- [Erlang Docs - Efficiency Guide](https://www.erlang.org/doc/system/efficiency_guide.html)
 - [Michal Muskala - Optimising for the BEAM](https://www.youtube.com/watch?v=iK9oxvKiN-8)
