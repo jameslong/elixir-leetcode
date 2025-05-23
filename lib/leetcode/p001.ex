@@ -15,6 +15,7 @@ defmodule Leetcode.P001 do
 
   """
 
+  @spec two_sum(nums :: [integer], target :: integer) :: [integer]
   def two_sum(nums, target), do: two_sum(nums, target, %{}, 0)
 
   def two_sum([], _target, _acc, _index), do: []
