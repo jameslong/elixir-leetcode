@@ -35,7 +35,7 @@ defmodule Leetcode.P002 do
     %ListNode{val: digit, next: add(nil, l2_next, carry)}
   end
 
-  defp add(l1, nil, val), do: add(nil, l1, val)
+  defp add(l1, nil, carry), do: add(nil, l1, carry)
 
   defp add(%ListNode{val: l1_val, next: l1_next}, %ListNode{val: l2_val, next: l2_next}, carry) do
     sum = l1_val + l2_val + carry

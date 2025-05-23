@@ -20,6 +20,11 @@ defmodule Leetcode.P002Test do
       l2 = to_list_node([9, 9, 9, 9])
       result = to_list_node([8, 9, 9, 9, 0, 0, 0, 1])
       assert P002.add_two_numbers(l1, l2) == result
+
+      l1 = to_list_node([9, 9, 9, 9])
+      l2 = to_list_node([9, 9, 9, 9, 9, 9, 9])
+      result = to_list_node([8, 9, 9, 9, 0, 0, 0, 1])
+      assert P002.add_two_numbers(l1, l2) == result
     end
 
     defp to_list_node([]), do: nil
