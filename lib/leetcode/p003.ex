@@ -10,29 +10,31 @@ defmodule Leetcode.P003 do
   """
 
   @spec length_of_longest_substring(s :: String.t()) :: integer
-  def length_of_longest_substring(s), do: length_of_longest_substring(s, 0, 0, 0, %{})
+  def length_of_longest_substring(s) do
+    len = byte_size(s)
+    shrink_left(s, len - 1, len - 1, 0, 0)
+  end
 
-  def length_of_longest_substring("", l, r, len, _seen), do: max(len, r - l)
+  def shrink_left(_s, l, _r, _b, res) when l < 0, do: res
 
-  def length_of_longest_substring(<<char, rest::binary>>, l, r, len, seen) do
-    case Map.get(seen, char) do
-      c when is_nil(c) or c < l ->
-        length_of_longest_substring(
-          rest,
-          l,
-          r + 1,
-          len,
-          Map.put(seen, char, r)
-        )
+  def shrink_left(s, l, r, b, res) do
+    char = :binary.at(s, l)
+    b_char = Bitwise.bsl(1, char)
 
-      c ->
-        length_of_longest_substring(
-          rest,
-          c + 1,
-          r + 1,
-          max(len, r - l),
-          Map.put(seen, char, r)
-        )
+    if Bitwise.band(b, b_char) != 0 do
+      shrink_right(s, l, r, char, b, res)
+    else
+      shrink_left(s, l - 1, r, Bitwise.bor(b, b_char), max(res, r - l + 1))
+    end
+  end
+
+  def shrink_right(s, l, r, dupe_char, b, res) do
+    char = :binary.at(s, r)
+
+    if char == dupe_char do
+      shrink_left(s, l - 1, r - 1, b, res)
+    else
+      shrink_right(s, l, r - 1, dupe_char, Bitwise.bxor(b, Bitwise.bsl(1, char)), res)
     end
   end
 end
