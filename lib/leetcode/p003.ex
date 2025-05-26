@@ -15,10 +15,10 @@ defmodule Leetcode.P003 do
     shrink_left(s, len - 1, len - 1, 0, 0)
   end
 
-  def shrink_left(_s, l, _r, _b, res) when l < 0, do: res
+  defp shrink_left(_s, l, _r, _b, res) when l < 0, do: res
 
-  def shrink_left(s, l, r, b, res) do
-    char = :binary.at(s, l)
+  defp shrink_left(s, l, r, b, res) do
+    char = :binary.at(s, l) - ?\s
     b_char = Bitwise.bsl(1, char)
 
     if Bitwise.band(b, b_char) != 0 do
@@ -28,8 +28,8 @@ defmodule Leetcode.P003 do
     end
   end
 
-  def shrink_right(s, l, r, dupe_char, b, res) do
-    char = :binary.at(s, r)
+  defp shrink_right(s, l, r, dupe_char, b, res) do
+    char = :binary.at(s, r) - ?\s
 
     if char == dupe_char do
       shrink_left(s, l - 1, r - 1, b, res)
