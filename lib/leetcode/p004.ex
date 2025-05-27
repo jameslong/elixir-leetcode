@@ -17,21 +17,36 @@ defmodule Leetcode.P004 do
 
   @spec find_median_sorted_arrays(nums1 :: [integer], nums2 :: [integer]) :: float
   def find_median_sorted_arrays(nums1, nums2) do
-    merged = merge(nums1, nums2)
-    median(merged)
+    nums1
+    |> merge(nums2, [])
+    |> median()
   end
 
-  defp merge(nums1, nums2), do: (nums1 ++ nums2) |> Enum.sort()
+  defp merge([], acc), do: acc
+
+  defp merge([h | t], acc), do: merge(t, [h | acc])
+
+  defp merge(nums1, [], acc), do: merge(nums1, acc)
+
+  defp merge([], nums2, acc), do: merge(nums2, acc)
+
+  defp merge([h1 | t1] = nums1, [h2 | t2] = nums2, acc) do
+    if h1 <= h2 do
+      merge(t1, nums2, [h1 | acc])
+    else
+      merge(nums1, t2, [h2 | acc])
+    end
+  end
 
   defp median(nums) do
-    len = length(nums)
+    nums_tuple = List.to_tuple(nums)
+    len = tuple_size(nums_tuple)
+    half_len = div(len, 2)
 
     if rem(len, 2) == 0 do
-      midl = Enum.at(nums, div(len, 2) - 1)
-      midr = Enum.at(nums, div(len, 2))
-      (midl + midr) / 2.0
+      (elem(nums_tuple, half_len - 1) + elem(nums_tuple, half_len)) / 2
     else
-      Enum.at(nums, div(len, 2))
+      elem(nums_tuple, half_len)
     end
   end
 end
