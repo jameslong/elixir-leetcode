@@ -23,31 +23,26 @@ defmodule Leetcode.P006 do
   def convert(s, 1), do: s
 
   def convert(s, num_rows) do
-    s =
-      s
-      |> String.to_charlist()
-      |> List.to_tuple()
-
     cycle_len = 2 * num_rows - 2
 
     0..(num_rows - 1)
-    |> Enum.map(fn row -> add_row(s, num_rows, cycle_len, row) end)
+    |> Enum.map(&add_row(s, num_rows, cycle_len, &1))
     |> IO.iodata_to_binary()
   end
 
   def add_row(s, num_rows, cycle_len, row), do: add_row(s, num_rows, cycle_len, row, 0, [])
 
   def add_row(s, num_rows, cycle_len, row, cycle, acc)
-      when row + cycle * cycle_len < tuple_size(s) do
+      when row + cycle * cycle_len < byte_size(s) do
     # Add the first character in the group
     index = row + cycle * cycle_len
-    acc = [elem(s, index) | acc]
+    acc = [:binary.at(s, index) | acc]
 
     # Add diagonal characters
     acc =
-      if row > 0 and row < num_rows - 1 and (cycle + 1) * cycle_len - row < tuple_size(s) do
+      if row > 0 and row < num_rows - 1 and (cycle + 1) * cycle_len - row < byte_size(s) do
         index = (cycle + 1) * cycle_len - row
-        [elem(s, index) | acc]
+        [:binary.at(s, index) | acc]
       else
         acc
       end
