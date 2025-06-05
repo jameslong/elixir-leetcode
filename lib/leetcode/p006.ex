@@ -38,7 +38,7 @@ defmodule Leetcode.P006 do
     index = row + cycle * cycle_len
     acc = [:binary.at(s, index) | acc]
 
-    # Add diagonal characters
+    # Add diagonal character (if middle row)
     acc =
       if row > 0 and row < num_rows - 1 and (cycle + 1) * cycle_len - row < byte_size(s) do
         index = (cycle + 1) * cycle_len - row
