@@ -37,11 +37,8 @@ defmodule Leetcode.P006 do
 
   def add_row(s, num_rows, cycle_len, row), do: add_row(s, num_rows, cycle_len, row, 0, [])
 
-  def add_row(s, _num_rows, cycle_len, row, cycle, acc)
-      when row + cycle * cycle_len > tuple_size(s) - 1,
-      do: Enum.reverse(acc)
-
-  def add_row(s, num_rows, cycle_len, row, cycle, acc) do
+  def add_row(s, num_rows, cycle_len, row, cycle, acc)
+      when row + cycle * cycle_len < tuple_size(s) do
     # Add the first character in the group
     index = row + cycle * cycle_len
     acc = [elem(s, index) | acc]
@@ -57,4 +54,6 @@ defmodule Leetcode.P006 do
 
     add_row(s, num_rows, cycle_len, row, cycle + 1, acc)
   end
+
+  def add_row(_, _, _, _, _, acc), do: Enum.reverse(acc)
 end
