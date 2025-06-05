@@ -21,3 +21,6 @@ leetcode-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Visual Studio Code settings
+launch.json
