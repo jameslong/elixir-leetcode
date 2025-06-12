@@ -32,14 +32,14 @@ defmodule Leetcode.P008 do
     end
   end
 
-  def trim(<<" ", rest::binary>>), do: trim(rest)
-  def trim(s), do: s
+  defp trim(<<" ", rest::binary>>), do: trim(rest)
+  defp trim(s), do: s
 
-  def pop_sign(<<"-", rest::binary>>), do: {-1, rest}
-  def pop_sign(<<"+", rest::binary>>), do: {1, rest}
-  def pop_sign(s), do: {1, s}
+  defp pop_sign(<<"-", rest::binary>>), do: {-1, rest}
+  defp pop_sign(<<"+", rest::binary>>), do: {1, rest}
+  defp pop_sign(s), do: {1, s}
 
-  def read_num(s), do: read_num(s, 0)
-  def read_num(<<c, rest::binary>>, num) when c in ?0..?9, do: read_num(rest, num * 10 + c - ?0)
-  def read_num(_, num), do: num
+  defp read_num(s), do: read_num(s, 0)
+  defp read_num(<<c, rest::binary>>, num) when c in ?0..?9, do: read_num(rest, num * 10 + c - ?0)
+  defp read_num(_, num), do: num
 end
