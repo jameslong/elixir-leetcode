@@ -17,24 +17,55 @@ defmodule Leetcode.P010 do
   """
 
   @spec is_match(s :: String.t(), p :: String.t()) :: boolean
-  def is_match(s, p), do: do_match(s, p)
+  def is_match(s, p) do
+    {result, _} = match(s, p, byte_size(s), byte_size(p), 0, 0, %{})
+    result
+  end
 
-  defp do_match("", ""), do: true
-  defp do_match(_, ""), do: false
-  defp do_match(s, <<_, ?*, _::binary>> = p), do: match_star(s, p)
-  defp do_match(s, p), do: match_char(s, p)
+  defp match(s, p, s_len, p_len, i, j, memo) do
+    case Map.get(memo, {i, j}) do
+      nil ->
+        {result, memo} = do_match(s, p, s_len, p_len, i, j, memo)
+        {result, Map.put(memo, {i, j}, result)}
 
-  defp match_star("", <<_, ?*, rest_p::binary>>), do: do_match("", rest_p)
-
-  defp match_star(<<c_s, rest_s::binary>> = s, <<c_p, ?*, rest_p::binary>> = p) do
-    cond do
-      do_match(s, rest_p) -> true
-      c_p in [c_s, ?.] -> do_match(rest_s, p)
-      true -> false
+      result ->
+        {result, memo}
     end
   end
 
-  defp match_char(<<c, rest_s::binary>>, <<c, rest_p::binary>>), do: do_match(rest_s, rest_p)
-  defp match_char(<<_c, rest_s::binary>>, <<?., rest_p::binary>>), do: do_match(rest_s, rest_p)
-  defp match_char(_, _), do: false
+  defp do_match(s, p, s_len, p_len, i, j, memo) do
+    p_char = if j < p_len, do: :binary.at(p, j), else: nil
+    p_next_char = if j + 1 < p_len, do: :binary.at(p, j + 1), else: nil
+    s_char = if i < s_len, do: :binary.at(s, i), else: nil
+
+    cond do
+      # End of pattern
+      j >= p_len ->
+        {i >= s_len, memo}
+
+      # *
+      j + 1 < p_len and p_next_char == ?* ->
+        {result, memo} = match(s, p, s_len, p_len, i, j + 2, memo)
+
+        if result do
+          {result, memo}
+        else
+          if i < s_len and matching_char?(p_char, s_char) do
+            match(s, p, s_len, p_len, i + 1, j, memo)
+          else
+            {false, memo}
+          end
+        end
+
+      # . / matching char
+      i < s_len and matching_char?(p_char, s_char) ->
+        match(s, p, s_len, p_len, i + 1, j + 1, memo)
+
+      # No match
+      true ->
+        {false, memo}
+    end
+  end
+
+  defp matching_char?(p_char, s_char), do: p_char == ?. or p_char == s_char
 end
