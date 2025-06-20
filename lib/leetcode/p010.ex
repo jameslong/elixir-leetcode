@@ -20,14 +20,21 @@ defmodule Leetcode.P010 do
   def is_match(s, p), do: do_match(s, p)
 
   defp do_match("", ""), do: true
-  defp do_match(s, <<c, ?*, rest_p::binary>>), do: match_star(s, c, rest_p)
+  defp do_match(_, ""), do: false
+  defp do_match(s, <<_, ?*, _::binary>> = p), do: match_star(s, p)
   defp do_match(s, p), do: match_char(s, p)
+
+  defp match_star("", <<_, ?*, rest_p::binary>>), do: do_match("", rest_p)
+
+  defp match_star(<<c_s, rest_s::binary>> = s, <<c_p, ?*, rest_p::binary>> = p) do
+    cond do
+      do_match(s, rest_p) -> true
+      c_p in [c_s, ?.] -> do_match(rest_s, p)
+      true -> false
+    end
+  end
 
   defp match_char(<<c, rest_s::binary>>, <<c, rest_p::binary>>), do: do_match(rest_s, rest_p)
   defp match_char(<<_c, rest_s::binary>>, <<?., rest_p::binary>>), do: do_match(rest_s, rest_p)
   defp match_char(_, _), do: false
-
-  defp match_star(_, ?., rest_p), do: do_match("", rest_p)
-  defp match_star("", _c, rest_p), do: do_match("", rest_p)
-  defp match_star(<<c, rest_s::binary>>, c, rest_p), do: match_star(rest_s, c, rest_p)
 end
