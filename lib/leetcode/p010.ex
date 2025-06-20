@@ -30,5 +30,4 @@ defmodule Leetcode.P010 do
   defp match_star(_, ?., rest_p), do: do_match("", rest_p)
   defp match_star("", _c, rest_p), do: do_match("", rest_p)
   defp match_star(<<c, rest_s::binary>>, c, rest_p), do: match_star(rest_s, c, rest_p)
-  defp match_star(<<c, rest_s::binary>>, c, rest_p), do: match_star(rest_s, c, rest_p)
 end
