@@ -7,6 +7,7 @@ defmodule Leetcode.P011Test do
     test "with examples returns correct results" do
       assert P011.max_area([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
       assert P011.max_area([1, 1]) == 1
+      assert P011.max_area([4, 3, 2, 1, 4]) == 16
     end
   end
 end
