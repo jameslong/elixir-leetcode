@@ -13,7 +13,7 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P001 - Two Sum | 3 | 100% |  |
 | P002 - Add Two Numbers | 1 | 89% |  |
 | P003 - Longest Substring Without Repeating Characters | 8 | 100% |  |
-| P004 - Median of Two Sorted Arrays | 2 | 67% |  |
+| P004 - Median of Two Sorted Arrays | 1 | 100% |  |
 | P005 - Longest Palindromic Substring | 38 | 100% |  |
 | P006 - Zigzag Conversion | 6 | 100% |  |
 | P007 - Reverse Integer | 301 | 82% | Can't repro #1 runtime, even with exact same code |
