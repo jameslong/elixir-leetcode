@@ -2,7 +2,29 @@
 
 Going through the first few exercises on Leetcode for fun and learning. 🥳
 
+All problems were solved without AI assistance, however AI was used to help generate the solution notes and documentation.
+
 We'll aim to get the #1 (Elixir) solution for runtime performance, however there is some runtime variation on Leetcode which can't be avoided, and we generally won't use ETS as it adds state/complexity, even though it can outperform map-based lookups.
+
+## Performance Results *
+
+| Problem | Runtime (ms) | Beats % of Elixir Submissions | Comments |
+|---------|--------------|-------------------------------|----------|
+| P001 - Two Sum | 3 | 100% |  |
+| P002 - Add Two Numbers | 1 | 89% |  |
+| P003 - Longest Substring Without Repeating Characters | 8 | 100% |  |
+| P004 - Median of Two Sorted Arrays | 2 | 67% |  |
+| P005 - Longest Palindromic Substring | 38 | 100% |  |
+| P006 - Zigzag Conversion | 6 | 100% |  |
+| P007 - Reverse Integer | 301 | 82% | Can't reproduce the runtime for the fastest submission, even with the exact same code |
+| P008 - String to Integer (atoi) | 0 | 100% |  |
+| P009 - Palindrome Number | 1 | 100% |  |
+| P010 - Regular Expression Matching | 4 | 100% |  |
+| P011 - Container With Most Water | 6 | 100% |  |
+| P012 - Integer to Roman | 1 | 100% |  |
+| P013 - Roman to Integer | 1 | 100% |  |
+
+* there is (significant) variation in the runtime performance on Leetcode
 
 ### Observations
 
