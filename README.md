@@ -6,7 +6,7 @@ We'll aim to get the #1 (Elixir) solution for runtime performance, however there
 
 Note, all problems were solved without AI assistance, however AI was used to help generate the solution notes.
 
-## Performance Results *
+## Performance Results (accurate as of 2025-06-25) *
 
 | Problem | Runtime (ms) | Beats | Comments |
 |---------|--------------|-------------------------------|----------|
