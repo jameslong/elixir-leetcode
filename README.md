@@ -23,6 +23,7 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P011 - Container With Most Water | 6 | 100% |  |
 | P012 - Integer to Roman | 1 | 100% |  |
 | P013 - Roman to Integer | 1 | 100% |  |
+| P014 - Longest Common Prefix | 0 | 100% | Erlang provides a built-in function for this exact problem |
 
 * there is (significant) variation in the runtime performance on Leetcode
 
