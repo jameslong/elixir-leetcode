@@ -24,6 +24,7 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P012 - Integer to Roman | 1 | 100% |  |
 | P013 - Roman to Integer | 1 | 100% |  |
 | P014 - Longest Common Prefix | 0 | 100% | Erlang provides a built-in function for this exact problem |
+| P015 - 3Sum | 93 | 100% |  |
 
 * there is (significant) variation in the runtime performance on Leetcode
 
