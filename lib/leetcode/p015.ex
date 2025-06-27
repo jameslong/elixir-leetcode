@@ -13,22 +13,23 @@ defmodule Leetcode.P015 do
 
   @spec three_sum(nums :: [integer]) :: [[integer]]
   def three_sum(nums) do
-    nums =
-      nums
-      |> Enum.sort()
-      |> List.to_tuple()
-
+    nums = List.to_tuple(Enum.sort(nums))
     do_three_sum(nums, 0, tuple_size(nums), [])
   end
 
-  defp do_three_sum(_nums, i, len, acc) when i > len - 3, do: acc
-
   defp do_three_sum(nums, i, len, acc) do
-    if i == 0 or elem(nums, i - 1) != elem(nums, i) do
-      acc = find_triplets(nums, i, i + 1, len - 1, acc)
-      do_three_sum(nums, i + 1, len, acc)
-    else
-      do_three_sum(nums, i + 1, len, acc)
+    val_i = elem(nums, i)
+
+    cond do
+      val_i > 0 or i > len - 3 ->
+        acc
+
+      i == 0 or elem(nums, i - 1) != val_i ->
+        acc = find_triplets(nums, i, i + 1, len - 1, acc)
+        do_three_sum(nums, i + 1, len, acc)
+
+      true ->
+        do_three_sum(nums, i + 1, len, acc)
     end
   end
 
@@ -42,12 +43,10 @@ defmodule Leetcode.P015 do
 
     cond do
       sum > 0 ->
-        r = shrink_from_right(nums, l, r - 1, val_r)
-        find_triplets(nums, i, l, r, acc)
+        find_triplets(nums, i, l, r - 1, acc)
 
       sum < 0 ->
-        l = grow_from_left(nums, l + 1, r, val_l)
-        find_triplets(nums, i, l, r, acc)
+        find_triplets(nums, i, l + 1, r, acc)
 
       true ->
         acc = [[val_i, val_l, val_r] | acc]
