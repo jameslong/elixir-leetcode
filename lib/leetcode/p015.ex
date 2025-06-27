@@ -16,14 +16,34 @@ defmodule Leetcode.P015 do
     nums =
       nums
       |> Enum.sort()
-      |> Enum.with_index()
+      |> List.to_tuple()
 
-    for {i, ind_i} <- nums,
-        {j, ind_j} <- nums,
-        {k, ind_k} <- nums,
-        ind_i < ind_j and ind_j < ind_k and i + j + k == 0,
-        uniq: true do
-      [i, j, k]
+    do_three_sum(nums, 0, tuple_size(nums), [])
+  end
+
+  defp do_three_sum(_nums, i, len, acc) when i >= len - 2, do: acc
+
+  defp do_three_sum(nums, i, len, acc) do
+    if i == 0 or elem(nums, i - 1) != elem(nums, i) do
+      acc = find_triplets(nums, i, i + 1, len - 1, acc)
+      do_three_sum(nums, i + 1, len, acc)
+    else
+      do_three_sum(nums, i + 1, len, acc)
+    end
+  end
+
+  defp find_triplets(_nums, _i, l, r, acc) when l >= r, do: acc
+
+  defp find_triplets(nums, i, l, r, acc) do
+    val_i = elem(nums, i)
+    val_l = elem(nums, l)
+    val_r = elem(nums, r)
+    sum = val_i + val_l + val_r
+
+    cond do
+      sum > 0 -> find_triplets(nums, i, l, r - 1, acc)
+      sum < 0 -> find_triplets(nums, i, l + 1, r, acc)
+      true -> find_triplets(nums, i, l + 1, r, [[val_i, val_l, val_r] | acc])
     end
   end
 end
