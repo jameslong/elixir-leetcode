@@ -21,7 +21,7 @@ defmodule Leetcode.P015 do
     do_three_sum(nums, 0, tuple_size(nums), [])
   end
 
-  defp do_three_sum(_nums, i, len, acc) when i >= len - 2, do: acc
+  defp do_three_sum(_nums, i, len, acc) when i > len - 3, do: acc
 
   defp do_three_sum(nums, i, len, acc) do
     if i == 0 or elem(nums, i - 1) != elem(nums, i) do
@@ -41,9 +41,34 @@ defmodule Leetcode.P015 do
     sum = val_i + val_l + val_r
 
     cond do
-      sum > 0 -> find_triplets(nums, i, l, r - 1, acc)
-      sum < 0 -> find_triplets(nums, i, l + 1, r, acc)
-      true -> find_triplets(nums, i, l + 1, r, [[val_i, val_l, val_r] | acc])
+      sum > 0 ->
+        r = shrink_from_right(nums, l, r - 1, val_r)
+        find_triplets(nums, i, l, r, acc)
+
+      sum < 0 ->
+        l = grow_from_left(nums, l + 1, r, val_l)
+        find_triplets(nums, i, l, r, acc)
+
+      true ->
+        acc = [[val_i, val_l, val_r] | acc]
+        l = grow_from_left(nums, l + 1, r, val_l)
+        r = shrink_from_right(nums, l, r - 1, val_r)
+
+        find_triplets(nums, i, l, r, acc)
+    end
+  end
+
+  defp shrink_from_right(nums, l, r, prev_val_r) do
+    cond do
+      r <= l or elem(nums, r) != prev_val_r -> r
+      true -> shrink_from_right(nums, l, r - 1, prev_val_r)
+    end
+  end
+
+  defp grow_from_left(nums, l, r, prev_val_l) do
+    cond do
+      l >= r or elem(nums, l) != prev_val_l -> l
+      true -> grow_from_left(nums, l + 1, r, prev_val_l)
     end
   end
 end
