@@ -6,7 +6,7 @@ We'll aim to get the #1 (Elixir) solution for runtime performance, however there
 
 Note, all problems were solved without AI assistance, however AI was used to help generate the solution notes.
 
-## Performance Results (accurate as of 2025-06-25) *
+## Performance Results (accurate as of 2025-06-30) *
 
 | Problem | Runtime (ms) | Beats | Comments |
 |---------|--------------|-------------------------------|----------|
@@ -25,6 +25,7 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P013 - Roman to Integer | 1 | 100% |  |
 | P014 - Longest Common Prefix | 0 | 100% | Erlang provides a built-in function for this exact problem |
 | P015 - 3Sum | 93 | 100% |  |
+| P016 - 3Sum Closest | 8 | 100% |  |
 
 * there is (significant) variation in the runtime performance on Leetcode
 
