@@ -27,6 +27,7 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P015 - 3Sum | 93 | 100% |  |
 | P016 - 3Sum Closest | 8 | 100% |  |
 | P017 - Letter Combinations of a Phone Number | 0 | 100% |  |
+| P018 - 4Sum | 40 | 100% |  |
 
 * there is (significant) variation in the runtime performance on Leetcode
 
