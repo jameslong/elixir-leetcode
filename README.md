@@ -6,7 +6,7 @@ We'll aim to get the #1 (Elixir) solution for runtime performance, however there
 
 Note, all problems were solved without AI assistance, however AI was used to help generate the solution notes.
 
-## Performance Results (accurate as of 2025-06-30) *
+## Performance Results (accurate as of 2025-07-03) *
 
 | Problem | Runtime (ms) | Beats | Comments |
 |---------|--------------|-------------------------------|----------|
@@ -29,6 +29,7 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P017 - Letter Combinations of a Phone Number | 0 | 100% |  |
 | P018 - 4Sum | 40 | 100% |  |
 | P019 - Remove Nth Node From End of List | 0 | 100% |  |
+| P020 - Valid Parentheses | 0 | 100% |  |
 
 * there is (significant) variation in the runtime performance on Leetcode
 
