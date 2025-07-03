@@ -28,6 +28,7 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P016 - 3Sum Closest | 8 | 100% |  |
 | P017 - Letter Combinations of a Phone Number | 0 | 100% |  |
 | P018 - 4Sum | 40 | 100% |  |
+| P019 - Remove Nth Node From End of List | 0 | 100% |  |
 
 * there is (significant) variation in the runtime performance on Leetcode
 
