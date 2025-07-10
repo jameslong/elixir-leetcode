@@ -21,27 +21,23 @@ defmodule Leetcode.P002 do
   end
 
   @spec add_two_numbers(l1 :: ListNode.t() | nil, l2 :: ListNode.t() | nil) :: ListNode.t() | nil
-  def add_two_numbers(l1, l2), do: add(l1, l2, 0)
+  def add_two_numbers(l1, l2), do: add_two(l1, l2, 0)
 
-  defp add(nil, nil, 0), do: nil
+  defp add_two(nil, nil, 0), do: nil
+  defp add_two(nil, nil, carry), do: %ListNode{val: carry}
+  defp add_two(%ListNode{} = l1, nil, carry), do: add_one(l1, carry)
+  defp add_two(nil, %ListNode{} = l2, carry), do: add_one(l2, carry)
 
-  defp add(nil, nil, carry), do: %ListNode{val: carry}
-
-  defp add(nil, %ListNode{val: l2_val, next: l2_next}, carry) do
-    sum = l2_val + carry
-    digit = rem(sum, 10)
-    carry = div(sum, 10)
-
-    %ListNode{val: digit, next: add(nil, l2_next, carry)}
+  defp add_two(%ListNode{val: val_1, next: next_1}, %ListNode{val: val_2, next: next_2}, carry) do
+    sum = val_1 + val_2 + carry
+    %ListNode{val: rem(sum, 10), next: add_two(next_1, next_2, div(sum, 10))}
   end
 
-  defp add(l1, nil, carry), do: add(nil, l1, carry)
+  defp add_one(nil, 0), do: nil
+  defp add_one(nil, carry), do: %ListNode{val: carry}
 
-  defp add(%ListNode{val: l1_val, next: l1_next}, %ListNode{val: l2_val, next: l2_next}, carry) do
-    sum = l1_val + l2_val + carry
-    digit = rem(sum, 10)
-    carry = div(sum, 10)
-
-    %ListNode{val: digit, next: add(l1_next, l2_next, carry)}
+  defp add_one(%ListNode{val: val, next: next}, carry) do
+    sum = val + carry
+    %ListNode{val: rem(sum, 10), next: add_one(next, div(sum, 10))}
   end
 end

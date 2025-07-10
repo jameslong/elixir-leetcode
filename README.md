@@ -6,12 +6,12 @@ We'll aim to get the #1 (Elixir) solution for runtime performance, however there
 
 Note, all problems were solved without AI assistance, however AI was used to help generate the solution notes.
 
-## Performance Results (accurate as of 2025-07-03) *
+## Performance Results (accurate as of 2025-07-10)
 
 | Problem | Runtime (ms) | Beats | Comments |
 |---------|--------------|-------------------------------|----------|
 | P001 - Two Sum | 3 | 100% |  |
-| P002 - Add Two Numbers | 1 | 89% |  |
+| P002 - Add Two Numbers | 0 | 100% |  |
 | P003 - Longest Substring Without Repeating Characters | 8 | 100% |  |
 | P004 - Median of Two Sorted Arrays | 1 | 100% |  |
 | P005 - Longest Palindromic Substring | 38 | 100% |  |
@@ -30,8 +30,6 @@ Note, all problems were solved without AI assistance, however AI was used to hel
 | P018 - 4Sum | 40 | 100% |  |
 | P019 - Remove Nth Node From End of List | 0 | 100% |  |
 | P020 - Valid Parentheses | 0 | 100% |  |
-
-* there is (significant) variation in the runtime performance on Leetcode
 
 ### Observations
 
